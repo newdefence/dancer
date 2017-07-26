@@ -1,0 +1,27 @@
+{
+  "name": "hybrid",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "grunt"
+  },
+  "devDependencies": {
+    "autoprefixer": "*",
+    "babel-core": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-es2016": "*",
+    "babel-preset-es2017": "*",
+    "babel-preset-stage-1": "*",
+    "babel-preset-stage-2": "*",
+    "babel-preset-stage-3": "*",
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-html-build": "*",
+    "grunt-text-replace": "*",
+    "html-minifier": "*",
+    "less": "*",
+    "postcss": "*",
+    "postcss-html": "*",
+    "posthtml": "*"
+  }
+}

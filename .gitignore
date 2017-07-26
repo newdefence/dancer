@@ -1,0 +1,15 @@
+*.pyc
+*.log
+.project
+.pydevproject
+.idea
+.settings
+.DS_Store
+_MACOSX
+node_modules
+waqu/config.py
+online
+*.png
+*.jpg
+*.gif
+*.jpeg

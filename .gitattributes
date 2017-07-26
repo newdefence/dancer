@@ -1,0 +1,32 @@
+* text=auto
+
+*.txt   text
+*.htm   text
+*.html  text
+*.js    text
+*.css   text
+*.json  text
+*.map   text
+*.md    text
+*.less  text
+*.scss  text
+*.sass  text
+*.cmd   text eol=crlf
+*.sql   text
+*.py    text
+*.sh    text eol=lf
+
+*.doc   -text   diff=word
+*.docx  -text   diff=word
+*.xls   -text   diff=word
+*.xlsx  -text   diff=word
+*.pdf   -text   diff=word
+
+*.ico   -text   diff=exif
+*.png   -text   diff=exif
+*.jpg   -text   diff=exif
+*.gif   -text   diff=exif
+*.psd   -text   diff=exif
+
+.gitattributes  text
+.gitignore      text
