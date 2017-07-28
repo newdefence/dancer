@@ -48,10 +48,10 @@ DROP TABLE IF EXISTS `blog_likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `blog_likes` (
-  `blog_id` int(11) NOT NULL,
-  `like_id` varchar(45) NOT NULL COMMENT '点赞者id',
-  `like_time` bigint(20) NOT NULL COMMENT '点赞时间，精确到秒',
-  KEY `index1` (`blog_id`) USING BTREE
+  `blogId` int(11) NOT NULL,
+  `likeUid` varchar(45) NOT NULL COMMENT '点赞者id',
+  `likeTime` bigint(20) NOT NULL COMMENT '点赞时间，精确到秒',
+  KEY `index1` (`blogId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点赞记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,11 +63,28 @@ DROP TABLE IF EXISTS `blog_views`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `blog_views` (
-  `blog_id` int(11) NOT NULL,
-  `view_id` varchar(45) NOT NULL COMMENT '查看者ID',
-  `view_time` bigint(20) NOT NULL COMMENT '查看时间（精确到秒）',
-  KEY `index1` (`blog_id`) USING BTREE
+  `blogId` int(11) NOT NULL,
+  `viewUid` varchar(45) NOT NULL COMMENT '查看者ID',
+  `viewTime` bigint(20) NOT NULL COMMENT '查看时间（精确到秒）',
+  KEY `index1` (`blogId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='动态查看记录';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `chat`
+--
+
+DROP TABLE IF EXISTS `chat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `chat` (
+  `fromUid` varchar(45) NOT NULL,
+  `toUid` varchar(45) NOT NULL,
+  `time` bigint(20) NOT NULL COMMENT '精确到毫秒',
+  `type` int(11) NOT NULL COMMENT '聊天消息类型：0文本（包含emoji表情）1图片（msg是图片路径，大小，宽高）；2语音（msg是语音时长，大小？，路径含格式）；3.视频（msg是截图？视频大小，时长，宽高？）4.语音通话（通话时长）5.视频通话（msg是通话时长）',
+  `msg` varchar(45) NOT NULL COMMENT '具体格式参考 msgType',
+  KEY `index1` (`fromUid`,`toUid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户聊天信息存储（存储条数和存储天数需要限制一下）';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +122,22 @@ CREATE TABLE `user_avatars` (
   KEY `index1` (`uid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户上传的头像信息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_follows`
+--
+
+DROP TABLE IF EXISTS `user_follows`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_follows` (
+  `uid` varchar(45) NOT NULL COMMENT '当前用户id',
+  `followUid` varchar(45) NOT NULL COMMENT '我关注的人的 id',
+  `followTime` bigint(20) DEFAULT NULL COMMENT '关注的时间（精确到秒）',
+  UNIQUE KEY `index1` (`uid`,`followUid`),
+  KEY `index2` (`uid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户关注信息表，uid和followUid唯一索引';
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -115,4 +148,4 @@ CREATE TABLE `user_avatars` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-28  2:28:10
+-- Dump completed on 2017-07-29  0:18:06
