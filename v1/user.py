@@ -2,6 +2,9 @@
 __author__ = 'newdefence@164.com'
 __date__ = "2017/7/26 上午1:09:00"
 
+import time
+import random
+
 from tornado.gen import coroutine
 from tornado.web import HTTPError, RequestHandler
 
@@ -17,7 +20,9 @@ class PhoneLoginHandler(RequestHandler):
     """用户手机号登陆，需要使用验证码，返回 用户信息和 token
     """
     def get(self, *args, **kwargs):
-        pass
+        # TODO 验证 code
+        now, r = time.time(), random.randrange(100000, 1000000)
+        token = "%x-%x" % (now, r)
 
 
 class FollowHandler(RequestHandler):
